@@ -50,7 +50,7 @@
                           options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial
                           context:nil];
         
-        [_userManager addObserver:self
+        [_currencyManager addObserver:self
                        forKeyPath:_ratesKeyPath
                           options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial
                           context:nil];

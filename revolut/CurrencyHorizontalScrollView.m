@@ -10,7 +10,7 @@
 #import "CurrencyViewCell.h"
 #import "AppDelegate.h"
 
-@implementation CurrencyHorizontalScrollView {
+@implementation CurrencyHorizontalScrollView { // TODO rename to CurrencyPicker
     UserManager *_userManager;
     NSArray *_currencies;
 }
@@ -42,7 +42,7 @@
 #pragma mark - UICollectionView
     
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1000; // simulate infinite scroll #1
+    return 1000; // HACK simulate infinite scroll #1
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,8 +53,8 @@
 
 #pragma mark - UIView
 
--(void)setFrame:(CGRect)frame {
-    [super setFrame:frame];
+-(void)layoutSubviews {
+    [super layoutSubviews];
     ((UICollectionViewFlowLayout *)self.collectionViewLayout).itemSize = self.frame.size;
 }
     
@@ -77,12 +77,10 @@
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     NSArray *currencies = _userManager.user.accounts.allKeys;
     if (currencies != _currencies && ![currencies isEqualToArray:_currencies]) {
-        NSLog(@"Accounts changed, reloading collection view");
         _currencies = currencies;
         
-        
         [self reloadData];
-        [self scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:500 inSection:0] // simulate infinite scroll #2
+        [self scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:500 inSection:0] // HACK simulate infinite scroll #2
                      atScrollPosition:UICollectionViewScrollPositionNone
                              animated:false];
     }

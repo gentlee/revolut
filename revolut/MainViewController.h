@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  revolut
 //
 //  Created by Alexander Danilov on 31/08/2017.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MainViewController : UITableViewController
 @end
 

@@ -22,7 +22,7 @@
             NSArray *items = items = xmlData[@"Cube"][@"Cube"][@"Cube"];
             
             if (items == nil) {
-                error = [NSError errorWithDomain:@"revolut" code:1 userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Error parsing rates: %@", items]}];
+                error = [NSError errorWithDomain:@"revolut" code:1 userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Error parsing rates"]}];
             } else {
                 NSMutableDictionary *result = [NSMutableDictionary new];
                 for (NSDictionary *item in items) {

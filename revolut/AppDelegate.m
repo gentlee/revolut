@@ -29,6 +29,13 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"Error" object:nil queue:nil usingBlock:^(NSNotification *notificaion){
+        NSError *error = [notificaion.userInfo valueForKey:@"error"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction: [UIAlertAction actionWithTitle:@"Dismiss" style:0 handler:nil]];
+        [[self.window rootViewController] presentViewController:alert animated:true completion:nil];
+    }];
+    
     [_currencyManager startUpdatingRates];
     
     return YES;
