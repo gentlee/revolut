@@ -9,13 +9,13 @@
 #import "CurrencyManager.h"
 #import "ApiService.h"
 
-@implementation CurrencyManager
+@implementation CurrencyManager {
+    ApiService *_apiService;
+}
     
 double const RATE_UPDATE_INTERVAL = 30.0;
     
 @synthesize rates;
-
-ApiService *_apiService;
 
 -(instancetype)initWithApiService:(ApiService *)apiService {
     self = [super init];

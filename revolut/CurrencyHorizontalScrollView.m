@@ -10,10 +10,10 @@
 #import "CurrencyViewCell.h"
 #import "AppDelegate.h"
 
-@implementation CurrencyHorizontalScrollView
-    
-UserManager *_userManager;
-NSArray *_currencies;
+@implementation CurrencyHorizontalScrollView {
+    UserManager *_userManager;
+    NSArray *_currencies;
+}
 
 -(instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     self = [super initWithFrame:frame collectionViewLayout:layout];

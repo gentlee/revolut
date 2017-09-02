@@ -10,15 +10,15 @@
 #import "AppDelegate.h"
 #import "Account.h"
 
-@implementation CurrencyViewCell
+@implementation CurrencyViewCell {
+    UserManager *_userManager;
+    CurrencyManager *_currencyManager;
+
+    NSString *_accountsKeyPath;
+    NSString *_ratesKeyPath;
+}
 
 @synthesize currency = _currency;
-
-UserManager *_userManager;
-CurrencyManager *_currencyManager;
-
-NSString *_accountsKeyPath;
-NSString *_ratesKeyPath;
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
