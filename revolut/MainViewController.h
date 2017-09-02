@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExchangeViewModel.h"
 
-@interface MainViewController : UITableViewController
+@interface MainViewController : UITableViewController<ExchangeViewModel>
 @end
 

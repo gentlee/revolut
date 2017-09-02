@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExchangeViewModel.h"
 
 @interface CurrencyHorizontalScrollView : UICollectionView<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
+
+@property (nonatomic) UIPageControl *pageControl;
+@property (nonatomic) NSObject<ExchangeViewModel> *viewModel;
 
 @end

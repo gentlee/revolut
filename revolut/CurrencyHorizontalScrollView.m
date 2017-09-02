@@ -15,6 +15,8 @@
     NSArray *_currencies;
 }
 
+@synthesize pageControl;
+
 -(instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
@@ -51,6 +53,13 @@
     return cell;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (pageControl) {
+        int contentCenterOffset = scrollView.contentOffset.x + self.frame.size.width / 2;
+        pageControl.currentPage = (int)(contentCenterOffset / self.frame.size.width) % _currencies.count;
+    }
+}
+
 #pragma mark - UIView
 
 -(void)layoutSubviews {
@@ -75,7 +84,7 @@
 #pragma mark - NSObject
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    NSArray *currencies = _userManager.user.accounts.allKeys;
+    NSArray *currencies = _userManager.user.accounts.allKeys; // show currencies for each user account
     if (currencies != _currencies && ![currencies isEqualToArray:_currencies]) {
         _currencies = currencies;
         

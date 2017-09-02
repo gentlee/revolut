@@ -47,6 +47,7 @@
 		DA9BF63E1F58577E00CA284B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA9BF6411F58577E00CA284B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA9BF6431F58577E00CA284B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAAE5F6F1F5B2F62000662C8 /* ExchangeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExchangeViewModel.h; sourceTree = "<group>"; };
 		DAF723AA1F5AC4910089D8E7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DAF723AB1F5AC4910089D8E7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DAF723AD1F5AC4F10089D8E7 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
@@ -77,6 +78,8 @@
 		DA661D8F1F5A753400F8BDF8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DA9BF6381F58577E00CA284B /* MainViewController.h */,
+				DA9BF6391F58577E00CA284B /* MainViewController.m */,
 				DA661D951F5A770000F8BDF8 /* CurrencyViewCell.h */,
 				DA661D961F5A770000F8BDF8 /* CurrencyViewCell.m */,
 				DA661D981F5A81E300F8BDF8 /* CurrencyHorizontalScrollView.h */,
@@ -126,14 +129,13 @@
 		DA9BF6311F58577E00CA284B /* revolut */ = {
 			isa = PBXGroup;
 			children = (
+				DAAE5F6E1F5B2F37000662C8 /* ViewModels */,
 				DAF723A91F5AC4850089D8E7 /* Model */,
 				DA661D9D1F5A8DE700F8BDF8 /* Services */,
 				DA661D9C1F5A8DCB00F8BDF8 /* Managers */,
 				DA661D8F1F5A753400F8BDF8 /* Views */,
 				DA9BF6351F58577E00CA284B /* AppDelegate.h */,
 				DA9BF6361F58577E00CA284B /* AppDelegate.m */,
-				DA9BF6381F58577E00CA284B /* MainViewController.h */,
-				DA9BF6391F58577E00CA284B /* MainViewController.m */,
 				DA9BF63B1F58577E00CA284B /* Main.storyboard */,
 				DA9BF63E1F58577E00CA284B /* Assets.xcassets */,
 				DA9BF6401F58577E00CA284B /* LaunchScreen.storyboard */,
@@ -149,6 +151,14 @@
 				DA9BF6331F58577E00CA284B /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DAAE5F6E1F5B2F37000662C8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DAAE5F6F1F5B2F62000662C8 /* ExchangeViewModel.h */,
+			);
+			name = ViewModels;
 			sourceTree = "<group>";
 		};
 		DAF723A91F5AC4850089D8E7 /* Model */ = {

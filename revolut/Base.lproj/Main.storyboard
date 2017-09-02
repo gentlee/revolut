@@ -62,14 +62,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sek-eK-Xbn">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GBP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfe-0i-Pmf">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="GBP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfe-0i-Pmf">
                                                                         <rect key="frame" x="24" y="24" width="78" height="48"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaL-Ok-KEo">
-                                                                        <rect key="frame" x="284" y="24" width="67" height="48"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -86,18 +80,24 @@
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ye-2F-Oqf">
+                                                                        <rect key="frame" x="107" y="20" width="244" height="48"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
+                                                                    </textField>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="BaL-Ok-KEo" firstAttribute="trailing" secondItem="sek-eK-Xbn" secondAttribute="trailingMargin" id="Icr-XT-Iqu"/>
+                                                                    <constraint firstItem="0ye-2F-Oqf" firstAttribute="trailing" secondItem="sek-eK-Xbn" secondAttribute="trailingMargin" id="OrM-Ww-4eH"/>
                                                                     <constraint firstItem="Yfe-0i-Pmf" firstAttribute="top" secondItem="sek-eK-Xbn" secondAttribute="topMargin" id="S3c-vz-hV1"/>
                                                                     <constraint firstItem="JSK-cd-vph" firstAttribute="top" secondItem="Yfe-0i-Pmf" secondAttribute="bottom" constant="3" id="b0h-4h-UZj"/>
                                                                     <constraint firstAttribute="trailingMargin" secondItem="hUQ-QC-bHQ" secondAttribute="trailing" id="cRk-C7-GWF"/>
                                                                     <constraint firstItem="Yfe-0i-Pmf" firstAttribute="leading" secondItem="sek-eK-Xbn" secondAttribute="leadingMargin" id="eTP-Kw-aAj"/>
                                                                     <constraint firstItem="hUQ-QC-bHQ" firstAttribute="baseline" secondItem="JSK-cd-vph" secondAttribute="baseline" id="fI8-dd-DeL"/>
+                                                                    <constraint firstItem="0ye-2F-Oqf" firstAttribute="leading" secondItem="Yfe-0i-Pmf" secondAttribute="trailing" constant="5" id="ggs-x7-IHl"/>
                                                                     <constraint firstItem="JSK-cd-vph" firstAttribute="leading" secondItem="Yfe-0i-Pmf" secondAttribute="leading" id="kAA-gC-xUZ"/>
-                                                                    <constraint firstItem="BaL-Ok-KEo" firstAttribute="baseline" secondItem="Yfe-0i-Pmf" secondAttribute="baseline" id="n0k-zX-d2K"/>
                                                                     <constraint firstItem="hUQ-QC-bHQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JSK-cd-vph" secondAttribute="trailing" constant="5" id="tjj-8B-Qnw"/>
-                                                                    <constraint firstItem="BaL-Ok-KEo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yfe-0i-Pmf" secondAttribute="trailing" constant="5" id="zr3-4Q-76u"/>
+                                                                    <constraint firstItem="0ye-2F-Oqf" firstAttribute="baseline" secondItem="Yfe-0i-Pmf" secondAttribute="baseline" id="yRQ-Xl-gis"/>
                                                                 </constraints>
                                                                 <edgeInsets key="layoutMargins" top="24" left="24" bottom="24" right="24"/>
                                                             </view>
@@ -113,21 +113,22 @@
                                                         <outlet property="accountValueLabel" destination="JSK-cd-vph" id="9Rd-lW-Frh"/>
                                                         <outlet property="currencyLabel" destination="Yfe-0i-Pmf" id="pgw-on-U97"/>
                                                         <outlet property="rateLabel" destination="hUQ-QC-bHQ" id="ple-7d-Jc2"/>
-                                                        <outlet property="transferValueLabel" destination="BaL-Ok-KEo" id="bDB-wE-EGb"/>
+                                                        <outlet property="transferField" destination="0ye-2F-Oqf" id="4cd-eC-5cv"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
-                                        <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="aFr-NT-moG">
-                                            <rect key="frame" x="168" y="56" width="39" height="37"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="6bU-eW-Hx7">
+                                            <rect key="frame" x="168" y="105" width="39" height="37"/>
                                         </pageControl>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="qbn-7t-GJR" secondAttribute="trailing" id="32Q-cG-3oD"/>
                                         <constraint firstItem="qbn-7t-GJR" firstAttribute="top" secondItem="yAL-hA-yHA" secondAttribute="top" id="5Sy-Sd-7TF"/>
                                         <constraint firstAttribute="bottom" secondItem="qbn-7t-GJR" secondAttribute="bottom" id="RvG-F7-Op8"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="6bU-eW-Hx7" secondAttribute="bottom" id="ae3-fr-j6j"/>
                                         <constraint firstItem="qbn-7t-GJR" firstAttribute="leading" secondItem="yAL-hA-yHA" secondAttribute="leading" id="bXY-vK-rvq"/>
+                                        <constraint firstItem="6bU-eW-Hx7" firstAttribute="centerX" secondItem="yAL-hA-yHA" secondAttribute="centerX" id="tnt-CP-TsD"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -149,4 +150,5 @@
             <point key="canvasLocation" x="79" y="124"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.1960784314" green="0.63529411759999999" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
 </document>
