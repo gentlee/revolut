@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
-#import "CurrencyHorizontalScrollView.h"
+#import "ExchangeAccountPickerView.h"
 #import "AppDelegate.h"
 
 @interface MainViewController ()
@@ -21,8 +21,8 @@
     UserManager *_userManager;
     CurrencyManager *_currencyManager;
     
-    CurrencyHorizontalScrollView *_fromAccountPicker;
-    CurrencyHorizontalScrollView *_toAccountPicker;
+    ExchangeAccountPickerView *_fromAccountPicker;
+    ExchangeAccountPickerView *_toAccountPicker;
 }
 
 -(void)awakeFromNib {
@@ -91,7 +91,7 @@
     
     UIPageControl *pageControl = [[cell.contentView subviews] objectAtIndex:1];
     
-    CurrencyHorizontalScrollView *accountPicker = [[cell.contentView subviews] objectAtIndex:0];
+    ExchangeAccountPickerView *accountPicker = [[cell.contentView subviews] objectAtIndex:0];
     accountPicker.backgroundColor = [accountPicker.backgroundColor colorWithAlphaComponent:indexPath.row == 0 ? 0.7 : 1];
     accountPicker.pageControl = pageControl;
     [accountPicker setViewModel:self andType: indexPath.row == 0 ? kAccountPickerFrom : kAccountPickerTo];
@@ -104,14 +104,14 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"canExchange"]) {
-        _exchangeButton.enabled = canExchange;
         NSLog(@"update exchangeButton");
+        _exchangeButton.enabled = canExchange;
     } else if ([keyPath isEqualToString:@"valueFrom"] || [keyPath isEqualToString:@"currencyFrom"]) {
         BOOL canExchangeAmount =
             [valueFrom compare:NSDecimalNumber.zero] != NSOrderedSame &&
             [_userManager canExchangeAmount:valueFrom from:currencyFrom];
         
-        canExchange = [NSNumber numberWithBool:canExchangeAmount];
+        [self setValue:[NSNumber numberWithBool:canExchangeAmount] forKey:@"canExchange"];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }

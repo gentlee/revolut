@@ -24,7 +24,7 @@
 
 -(BOOL)canExchangeAmount:(NSDecimalNumber *)amount from:(NSString *)fromCurrency {
     Account *fromAccount = _user.accounts[fromCurrency];
-    BOOL result = [fromAccount.amount compare:amount] == NSOrderedDescending;
+    BOOL result = [fromAccount.amount compare:amount] != NSOrderedAscending;
     NSLog(@"canExchange: %@ from: %@ accountAmount: %@ result: %@", amount, fromCurrency, fromAccount.amount, [NSNumber numberWithBool:result]);
     return result;
 }

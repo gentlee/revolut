@@ -1,5 +1,5 @@
 //
-//  CurrencyHorizontalScrollView.h
+//  AccountPickerView.h
 //  revolut
 //
 //  Created by Alexander Danilov on 02/09/2017.
@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, AccountPickerType) {
     kAccountPickerTo
 };
 
-@interface CurrencyHorizontalScrollView : UICollectionView<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
+@interface ExchangeAccountPickerView : UICollectionView<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
 @property (nonatomic) UIPageControl *pageControl;
 @property (nonatomic, readonly) NSObject<ExchangeViewModel> *viewModel;

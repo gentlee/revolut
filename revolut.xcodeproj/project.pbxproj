@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A63CFF4E85E5FBBB06C09455 /* Pods_revolut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81796524C38B5F3B590F0ABB /* Pods_revolut.framework */; };
-		DA661D971F5A770000F8BDF8 /* CurrencyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661D961F5A770000F8BDF8 /* CurrencyViewCell.m */; };
-		DA661D9A1F5A81E300F8BDF8 /* CurrencyHorizontalScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661D991F5A81E300F8BDF8 /* CurrencyHorizontalScrollView.m */; };
+		DA661D971F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661D961F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.m */; };
+		DA661D9A1F5A81E300F8BDF8 /* ExchangeAccountPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661D991F5A81E300F8BDF8 /* ExchangeAccountPickerView.m */; };
 		DA661DA01F5A8EA100F8BDF8 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661D9F1F5A8EA100F8BDF8 /* CurrencyManager.m */; };
 		DA661DA31F5A8EAE00F8BDF8 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661DA21F5A8EAE00F8BDF8 /* UserManager.m */; };
 		DA661DA61F5A943D00F8BDF8 /* ApiService.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661DA51F5A943D00F8BDF8 /* ApiService.m */; };
@@ -28,10 +28,10 @@
 		81796524C38B5F3B590F0ABB /* Pods_revolut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_revolut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8720C3E76E45C526C31AEB15 /* Pods-revolut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-revolut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-revolut/Pods-revolut.debug.xcconfig"; sourceTree = "<group>"; };
 		BCA1357F2437A09EE80EDEDF /* Pods-revolut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-revolut.release.xcconfig"; path = "Pods/Target Support Files/Pods-revolut/Pods-revolut.release.xcconfig"; sourceTree = "<group>"; };
-		DA661D951F5A770000F8BDF8 /* CurrencyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyViewCell.h; sourceTree = "<group>"; };
-		DA661D961F5A770000F8BDF8 /* CurrencyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyViewCell.m; sourceTree = "<group>"; };
-		DA661D981F5A81E300F8BDF8 /* CurrencyHorizontalScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyHorizontalScrollView.h; sourceTree = "<group>"; };
-		DA661D991F5A81E300F8BDF8 /* CurrencyHorizontalScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyHorizontalScrollView.m; sourceTree = "<group>"; };
+		DA661D951F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeAccountPickerViewCell.h; sourceTree = "<group>"; };
+		DA661D961F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeAccountPickerViewCell.m; sourceTree = "<group>"; };
+		DA661D981F5A81E300F8BDF8 /* ExchangeAccountPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeAccountPickerView.h; sourceTree = "<group>"; };
+		DA661D991F5A81E300F8BDF8 /* ExchangeAccountPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeAccountPickerView.m; sourceTree = "<group>"; };
 		DA661D9E1F5A8EA100F8BDF8 /* CurrencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyManager.h; sourceTree = "<group>"; };
 		DA661D9F1F5A8EA100F8BDF8 /* CurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManager.m; sourceTree = "<group>"; };
 		DA661DA11F5A8EAE00F8BDF8 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
@@ -84,10 +84,10 @@
 				DA8468581F5C6B4D00D03A50 /* Controls */,
 				DA9BF6381F58577E00CA284B /* MainViewController.h */,
 				DA9BF6391F58577E00CA284B /* MainViewController.m */,
-				DA661D951F5A770000F8BDF8 /* CurrencyViewCell.h */,
-				DA661D961F5A770000F8BDF8 /* CurrencyViewCell.m */,
-				DA661D981F5A81E300F8BDF8 /* CurrencyHorizontalScrollView.h */,
-				DA661D991F5A81E300F8BDF8 /* CurrencyHorizontalScrollView.m */,
+				DA661D951F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.h */,
+				DA661D961F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.m */,
+				DA661D981F5A81E300F8BDF8 /* ExchangeAccountPickerView.h */,
+				DA661D991F5A81E300F8BDF8 /* ExchangeAccountPickerView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -142,10 +142,10 @@
 		DA9BF6311F58577E00CA284B /* revolut */ = {
 			isa = PBXGroup;
 			children = (
-				DAAE5F6E1F5B2F37000662C8 /* ViewModels */,
 				DAF723A91F5AC4850089D8E7 /* Model */,
 				DA661D9D1F5A8DE700F8BDF8 /* Services */,
 				DA661D9C1F5A8DCB00F8BDF8 /* Managers */,
+				DAAE5F6E1F5B2F37000662C8 /* ViewModels */,
 				DA661D8F1F5A753400F8BDF8 /* Views */,
 				DA9BF6351F58577E00CA284B /* AppDelegate.h */,
 				DA9BF6361F58577E00CA284B /* AppDelegate.m */,
@@ -323,10 +323,10 @@
 				DA661DA61F5A943D00F8BDF8 /* ApiService.m in Sources */,
 				DA9BF6371F58577E00CA284B /* AppDelegate.m in Sources */,
 				DA661DA01F5A8EA100F8BDF8 /* CurrencyManager.m in Sources */,
-				DA661D9A1F5A81E300F8BDF8 /* CurrencyHorizontalScrollView.m in Sources */,
+				DA661D9A1F5A81E300F8BDF8 /* ExchangeAccountPickerView.m in Sources */,
 				DA84685B1F5C6B6D00D03A50 /* FixedTextField.m in Sources */,
 				DA9BF6341F58577E00CA284B /* main.m in Sources */,
-				DA661D971F5A770000F8BDF8 /* CurrencyViewCell.m in Sources */,
+				DA661D971F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

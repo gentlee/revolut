@@ -6,14 +6,14 @@
 //  Copyright © 2017 Home. All rights reserved.
 //
 
-#import "CurrencyViewCell.h"
+#import "ExchangeAccountPickerViewCell.h"
 #import "AppDelegate.h"
 #import "Account.h"
 
 static NSNumberFormatter *currencyFormatter;
 static NSNumberFormatter *decimalFormatter;
 
-@implementation CurrencyViewCell {
+@implementation ExchangeAccountPickerViewCell {
     UserManager *_userManager;
     CurrencyManager *_currencyManager;
 
@@ -28,7 +28,6 @@ static NSNumberFormatter *decimalFormatter;
         [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
         
         decimalFormatter = [[NSNumberFormatter alloc] init];
-        [decimalFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
         decimalFormatter.minimumFractionDigits = 0;
         decimalFormatter.currencySymbol = @"";
     }
@@ -55,7 +54,6 @@ static NSNumberFormatter *decimalFormatter;
             [_viewModel removeObserver:self forKeyPath:@"valueFrom"];
             [_viewModel removeObserver:self forKeyPath:@"currencyFrom"];
             [_viewModel removeObserver:self forKeyPath:@"currencyTo"];
-            [_viewModel removeObserver:self forKeyPath:@"canExchange"];
         }
         
         _viewModel = viewModel;
@@ -64,7 +62,6 @@ static NSNumberFormatter *decimalFormatter;
             [_viewModel addObserver:self forKeyPath:@"valueFrom" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
             [_viewModel addObserver:self forKeyPath:@"currencyFrom" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
             [_viewModel addObserver:self forKeyPath:@"currencyTo" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
-            [_viewModel addObserver:self forKeyPath:@"canExchange" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
         }
     }
     
@@ -164,8 +161,6 @@ static NSNumberFormatter *decimalFormatter;
             decimalFormatter.currencyCode = _currency;
             _transferField.text = [decimalFormatter stringFromNumber:currentExchangeValue];
         }
-    } else if ([keyPath isEqualToString:@"canExchange"]) {
-        _accountValueLabel.textColor = _viewModel.canExchange ? [UIColor whiteColor] : [UIColor redColor];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }

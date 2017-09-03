@@ -1,16 +1,16 @@
 //
-//  CurrencyHorizontalScrollView.m
+//  AccountPickerView.m
 //  revolut
 //
 //  Created by Alexander Danilov on 02/09/2017.
 //  Copyright © 2017 Home. All rights reserved.
 //
 
-#import "CurrencyHorizontalScrollView.h"
-#import "CurrencyViewCell.h"
+#import "ExchangeAccountPickerView.h"
+#import "ExchangeAccountPickerViewCell.h"
 #import "AppDelegate.h"
 
-@implementation CurrencyHorizontalScrollView { // TODO rename to AccountPicker
+@implementation ExchangeAccountPickerView {
     UserManager *_userManager;
     NSArray *_currencies;
 }
@@ -37,7 +37,7 @@
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CurrencyViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CurrencyViewCell" forIndexPath:indexPath];
+    ExchangeAccountPickerViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ExchangeAccountPickerViewCell" forIndexPath:indexPath];
     [cell setViewModel:_viewModel andType:_type andCurrency:[_currencies objectAtIndex:indexPath.row % _currencies.count]];
     return cell;
 }

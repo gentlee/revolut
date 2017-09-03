@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ExchangeViewModel.h"
-#import "CurrencyHorizontalScrollView.h"
+#import "ExchangeAccountPickerView.h"
 
-@interface CurrencyViewCell : UICollectionViewCell<UITextFieldDelegate>
+@interface ExchangeAccountPickerViewCell : UICollectionViewCell<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currencyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountValueLabel;
