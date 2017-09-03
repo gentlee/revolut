@@ -1,5 +1,5 @@
 //
-//  UserManager.h
+//  AccountManager.h
 //  revolut
 //
 //  Created by Alexander Danilov on 02/09/2017.
@@ -10,9 +10,9 @@
 #import "CurrencyManager.h"
 #import "User.h"
 
-@interface UserManager : NSObject
+@interface AccountManager : NSObject
 
-@property (nonatomic, readonly) User *user;
+@property (nonatomic) NSDictionary *accounts;
 
 -(instancetype)initWith:(CurrencyManager *)currencyManager;
 

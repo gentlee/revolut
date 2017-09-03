@@ -12,7 +12,7 @@
     
 @synthesize apiService = _apiService;
 @synthesize currencyManager = _currencyManager;
-@synthesize userManager = _userManager;
+@synthesize accountManager = _accountManager;
     
 + (AppDelegate *)sharedInstance{
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -23,7 +23,7 @@
     if (self) {
         _apiService = [ApiService new];
         _currencyManager = [[CurrencyManager alloc] initWithApiService: _apiService];
-        _userManager = [[UserManager alloc] initWith:_currencyManager];
+        _accountManager = [[AccountManager alloc] initWith:_currencyManager];
     }
     return self;
 }

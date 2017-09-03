@@ -11,16 +11,10 @@
 
 @implementation User
     
-@synthesize accounts;
     
 -(instancetype)init {
     self = [super init];
     if (self) {
-        accounts = @{
-                     @"EUR": [[Account alloc] initWithCurrency:@"EUR" andAmount:[[NSDecimalNumber alloc] initWithInt: 100]],
-                     @"GBP": [[Account alloc] initWithCurrency:@"GBP" andAmount:[[NSDecimalNumber alloc] initWithInt: 100]],
-                     @"USD": [[Account alloc] initWithCurrency:@"USD" andAmount:[[NSDecimalNumber alloc] initWithInt: 100]]
-                    };
     }
     return self;
 }

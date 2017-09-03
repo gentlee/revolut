@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CurrencyManager.h"
-#import "UserManager.h"
+#import "AccountManager.h"
 #import "ApiService.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -19,7 +19,7 @@
 
 @property (nonatomic, readonly) ApiService *apiService;
 @property (nonatomic, readonly) CurrencyManager *currencyManager;
-@property (nonatomic, readonly) UserManager *userManager;
+@property (nonatomic, readonly) AccountManager *accountManager;
 
 @end
 

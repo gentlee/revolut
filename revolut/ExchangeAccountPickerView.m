@@ -11,14 +11,14 @@
 #import "AppDelegate.h"
 
 @implementation ExchangeAccountPickerView {
-    UserManager *_userManager;
+    AccountManager *_accountManager;
     NSArray *_currencies;
 }
     
 -(void) awakeFromNib {
     [super awakeFromNib];
     
-    _userManager = [AppDelegate sharedInstance].userManager;
+    _accountManager = [AppDelegate sharedInstance].accountManager;
     _currencies = [[NSArray alloc] init];
     
     self.delegate = self;
@@ -64,17 +64,17 @@
     [super didMoveToWindow];
     
     if (self.window) {
-        [_userManager addObserver:self forKeyPath:@"user.accounts" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
+        [_accountManager addObserver:self forKeyPath:@"accounts" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
     } else {
-        [_userManager removeObserver:self forKeyPath:@"user.accounts"];
+        [_accountManager removeObserver:self forKeyPath:@"accounts"];
     }
 }
 
 #pragma mark - NSObject
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"user.accounts"]) {
-        NSArray *currencies = _userManager.user.accounts.allKeys; // show currencies for each user account
+    if ([keyPath isEqualToString:@"accounts"]) {
+        NSArray *currencies = _accountManager.accounts.allKeys; // show currencies for each account
         if (currencies != _currencies && ![currencies isEqualToArray:_currencies]) {
             _currencies = currencies;
             

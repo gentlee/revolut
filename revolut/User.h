@@ -9,7 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface User : NSObject
-    
-@property (nonatomic) NSDictionary *accounts;
 
 @end

@@ -14,7 +14,7 @@ static NSNumberFormatter *currencyFormatter;
 static NSNumberFormatter *decimalFormatter;
 
 @implementation ExchangeAccountPickerViewCell {
-    UserManager *_userManager;
+    AccountManager *_accountManager;
     CurrencyManager *_currencyManager;
 
     NSString *_accountsKeyPath;
@@ -36,7 +36,7 @@ static NSNumberFormatter *decimalFormatter;
 -(void)awakeFromNib {
     [super awakeFromNib];
     
-    _userManager = [AppDelegate sharedInstance].userManager;
+    _accountManager = [AppDelegate sharedInstance].accountManager;
     _currencyManager = [AppDelegate sharedInstance].currencyManager;
     
     _transferField.delegate = self;
@@ -67,7 +67,7 @@ static NSNumberFormatter *decimalFormatter;
     
     if (![currency isEqualToString:_currency]) {
         if (_currency) {
-            [_userManager removeObserver:self forKeyPath:_accountsKeyPath];
+            [_accountManager removeObserver:self forKeyPath:_accountsKeyPath];
             [_currencyManager removeObserver:self forKeyPath:_ratesKeyPath];
         }
         
@@ -76,10 +76,10 @@ static NSNumberFormatter *decimalFormatter;
         if (_currency) {
             _currencyLabel.text = _currency;
             
-            _accountsKeyPath = [NSString stringWithFormat:@"%@%@", @"user.accounts.", _currency];
+            _accountsKeyPath = [NSString stringWithFormat:@"%@%@", @"accounts.", _currency];
             _ratesKeyPath = [NSString stringWithFormat:@"%@%@", @"rates.", _currency];
             
-            [_userManager addObserver:self forKeyPath:_accountsKeyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
+            [_accountManager addObserver:self forKeyPath:_accountsKeyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
             [_currencyManager addObserver:self forKeyPath:_ratesKeyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
         }
     }
@@ -139,7 +139,7 @@ static NSNumberFormatter *decimalFormatter;
     if ([keyPath isEqualToString:_accountsKeyPath]) {
         NSLog(@"update accountValueLabel");
         [currencyFormatter setCurrencyCode:_currency];
-        Account *account = [_userManager.user.accounts valueForKey:_currency];
+        Account *account = [_accountManager.accounts valueForKey:_currency];
         _accountValueLabel.text = [NSString localizedStringWithFormat:@"You have %@", [currencyFormatter stringFromNumber:account.amount]];
     } else if ([keyPath isEqualToString:_ratesKeyPath] || [keyPath isEqualToString:@"valueFrom"] || [keyPath isEqualToString:@"currencyFrom"] || [keyPath isEqualToString:@"currencyTo"]) {
 

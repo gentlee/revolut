@@ -18,7 +18,7 @@
 @end
 
 @implementation MainViewController {
-    UserManager *_userManager;
+    AccountManager *_accountManager;
     CurrencyManager *_currencyManager;
     
     ExchangeAccountPickerView *_fromAccountPicker;
@@ -28,11 +28,11 @@
 -(void)awakeFromNib {
     [super awakeFromNib];
     
-    _userManager = [AppDelegate sharedInstance].userManager;
+    _accountManager = [AppDelegate sharedInstance].accountManager;
     _currencyManager = [AppDelegate sharedInstance].currencyManager;
     
-    currencyFrom = _userManager.user.accounts.allKeys[0];
-    currencyTo = _userManager.user.accounts.allKeys[1];
+    currencyFrom = _accountManager.accounts.allKeys[0];
+    currencyTo = _accountManager.accounts.allKeys[1];
     valueFrom = NSDecimalNumber.zero;
 }
 
@@ -52,7 +52,7 @@
 }
 
 - (void)exchange {
-    [_userManager exchangeAmount:valueFrom from:currencyFrom to:currencyTo];
+    [_accountManager exchangeAmount:valueFrom from:currencyFrom to:currencyTo];
     valueFrom = NSDecimalNumber.zero;
 }
 
@@ -109,7 +109,7 @@
     } else if ([keyPath isEqualToString:@"valueFrom"] || [keyPath isEqualToString:@"currencyFrom"]) {
         BOOL canExchangeAmount =
             [valueFrom compare:NSDecimalNumber.zero] != NSOrderedSame &&
-            [_userManager canExchangeAmount:valueFrom from:currencyFrom];
+            [_accountManager canExchangeAmount:valueFrom from:currencyFrom];
         
         [self setValue:[NSNumber numberWithBool:canExchangeAmount] forKey:@"canExchange"];
     } else {
