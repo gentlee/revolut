@@ -8,7 +8,8 @@
 
 @protocol ExchangeViewModel
 
-@property (nonatomic) NSDecimalNumber *exchangeValue;
+@property (nonatomic) NSDecimalNumber *valueFrom;
+@property (nonatomic) NSDecimalNumber *valueTo; // can't observe
 @property (nonatomic) NSString *currencyFrom;
 @property (nonatomic) NSString *currencyTo;
 @property (nonatomic, readonly) BOOL canExchange;

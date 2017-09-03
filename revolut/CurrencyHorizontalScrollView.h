@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "ExchangeViewModel.h"
 
+typedef NS_ENUM(NSUInteger, AccountPickerType) {
+    kAccountPickerFrom,
+    kAccountPickerTo
+};
+
 @interface CurrencyHorizontalScrollView : UICollectionView<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
 @property (nonatomic) UIPageControl *pageControl;
-@property (nonatomic) NSObject<ExchangeViewModel> *viewModel;
+@property (nonatomic, readonly) NSObject<ExchangeViewModel> *viewModel;
+@property (nonatomic, readonly) AccountPickerType type;
+
+-(void)setViewModel:(NSObject<ExchangeViewModel> *)viewModel andType:(AccountPickerType)type;
 
 @end

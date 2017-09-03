@@ -15,5 +15,6 @@
 
 -(instancetype) initWithApiService:(ApiService *)apiService;
 -(void) startUpdatingRates;
+-(NSDecimalNumber *)getExchangeRateOfValue:(NSDecimalNumber *)value from:(NSString *)fromCurrency to:(NSString *)toCurrency;
     
 @end

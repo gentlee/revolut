@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CurrencyManager.h"
 #import "User.h"
 
 @interface UserManager : NSObject
 
 @property (nonatomic, readonly) User *user;
+
+-(instancetype)initWith:(CurrencyManager *)currencyManager;
+
+-(BOOL)canExchangeAmount:(NSDecimalNumber *)amount from:(NSString *)fromCurrency;
+-(BOOL)exchangeAmount:(NSDecimalNumber *)amount from:(NSString *)fromCurrency to:(NSString *)toCurrency;
 
 @end

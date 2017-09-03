@@ -8,6 +8,7 @@
 
 #import "ApiService.h"
 #import "XMLDictionary.h"
+#include <stdlib.h>
 
 @implementation ApiService
     
@@ -25,8 +26,8 @@
                 error = [NSError errorWithDomain:@"revolut" code:1 userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Error parsing rates"]}];
             } else {
                 NSMutableDictionary *result = [NSMutableDictionary new];
-                for (NSDictionary *item in items) {
-                    NSDecimalNumber *rate = [NSDecimalNumber decimalNumberWithString: item[@"_rate"]];
+                for (NSDictionary *item in items) { // TODO remove random & stdlib
+                    NSDecimalNumber *rate = [[NSDecimalNumber decimalNumberWithString: item[@"_rate"]] decimalNumberByAdding: [[NSDecimalNumber alloc] initWithInt: arc4random_uniform(10)]];
                     [result setValue:rate forKey:item[@"_currency"]];
                 }
                 

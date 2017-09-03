@@ -7,14 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExchangeViewModel.h"
+#import "CurrencyHorizontalScrollView.h"
 
-@interface CurrencyViewCell : UICollectionViewCell
+@interface CurrencyViewCell : UICollectionViewCell<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currencyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountValueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rateLabel;
 @property (weak, nonatomic) IBOutlet UITextField *transferField;
 
-@property (nonatomic) NSString *currency;
+@property (nonatomic, readonly) NSString *currency;
+@property (nonatomic, readonly) NSObject<ExchangeViewModel> *viewModel;
+@property (nonatomic, readonly) AccountPickerType type;
+
+-(void)setViewModel:(NSObject<ExchangeViewModel> *)viewModel andType:(AccountPickerType)type andCurrency:(NSString *)currency;
 
 @end

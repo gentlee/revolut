@@ -13,6 +13,7 @@
 		DA661DA01F5A8EA100F8BDF8 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661D9F1F5A8EA100F8BDF8 /* CurrencyManager.m */; };
 		DA661DA31F5A8EAE00F8BDF8 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661DA21F5A8EAE00F8BDF8 /* UserManager.m */; };
 		DA661DA61F5A943D00F8BDF8 /* ApiService.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661DA51F5A943D00F8BDF8 /* ApiService.m */; };
+		DA84685B1F5C6B6D00D03A50 /* FixedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DA84685A1F5C6B6D00D03A50 /* FixedTextField.m */; };
 		DA9BF6341F58577E00CA284B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BF6331F58577E00CA284B /* main.m */; };
 		DA9BF6371F58577E00CA284B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BF6361F58577E00CA284B /* AppDelegate.m */; };
 		DA9BF63A1F58577E00CA284B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BF6391F58577E00CA284B /* MainViewController.m */; };
@@ -37,6 +38,8 @@
 		DA661DA21F5A8EAE00F8BDF8 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		DA661DA41F5A943D00F8BDF8 /* ApiService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiService.h; sourceTree = "<group>"; };
 		DA661DA51F5A943D00F8BDF8 /* ApiService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiService.m; sourceTree = "<group>"; };
+		DA8468591F5C6B6D00D03A50 /* FixedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedTextField.h; sourceTree = "<group>"; };
+		DA84685A1F5C6B6D00D03A50 /* FixedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixedTextField.m; sourceTree = "<group>"; };
 		DA9BF62F1F58577E00CA284B /* revolut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = revolut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA9BF6331F58577E00CA284B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA9BF6351F58577E00CA284B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 		DA661D8F1F5A753400F8BDF8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DA8468581F5C6B4D00D03A50 /* Controls */,
 				DA9BF6381F58577E00CA284B /* MainViewController.h */,
 				DA9BF6391F58577E00CA284B /* MainViewController.m */,
 				DA661D951F5A770000F8BDF8 /* CurrencyViewCell.h */,
@@ -106,6 +110,15 @@
 				DA661DA51F5A943D00F8BDF8 /* ApiService.m */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		DA8468581F5C6B4D00D03A50 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				DA8468591F5C6B6D00D03A50 /* FixedTextField.h */,
+				DA84685A1F5C6B6D00D03A50 /* FixedTextField.m */,
+			);
+			name = Controls;
 			sourceTree = "<group>";
 		};
 		DA9BF6261F58577E00CA284B = {
@@ -311,6 +324,7 @@
 				DA9BF6371F58577E00CA284B /* AppDelegate.m in Sources */,
 				DA661DA01F5A8EA100F8BDF8 /* CurrencyManager.m in Sources */,
 				DA661D9A1F5A81E300F8BDF8 /* CurrencyHorizontalScrollView.m in Sources */,
+				DA84685B1F5C6B6D00D03A50 /* FixedTextField.m in Sources */,
 				DA9BF6341F58577E00CA284B /* main.m in Sources */,
 				DA661D971F5A770000F8BDF8 /* CurrencyViewCell.m in Sources */,
 			);
