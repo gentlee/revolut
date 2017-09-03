@@ -11,7 +11,14 @@
 @implementation FixedTextField
 
 -(CGSize)intrinsicContentSize {
-    return self.isEditing && self.text.length ? [super.text sizeWithAttributes:self.typingAttributes] : [super intrinsicContentSize];
+    // HACK fix intrinsic content size while editing
+    if (self.isEditing) {
+        CGSize size = [self.text sizeWithAttributes:self.typingAttributes];
+        size.width += self.leftView.frame.size.width;
+        return size;
+    }
+        
+    return [super intrinsicContentSize];
 }
 
 @end

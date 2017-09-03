@@ -69,6 +69,7 @@
     
     [self addObserver:self forKeyPath:@"valueFrom" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
     [self addObserver:self forKeyPath:@"currencyFrom" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
+    [self addObserver:self forKeyPath:@"currencyTo" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
     [self addObserver:self forKeyPath:@"canExchange" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
 }
 
@@ -77,6 +78,7 @@
     
     [self removeObserver:self forKeyPath:@"valueFrom"];
     [self removeObserver:self forKeyPath:@"currencyFrom"];
+    [self removeObserver:self forKeyPath:@"currencyTo"];
     [self removeObserver:self forKeyPath:@"canExchange"];
 }
 
@@ -106,8 +108,9 @@
     if ([keyPath isEqualToString:@"canExchange"]) {
         NSLog(@"update exchangeButton");
         _exchangeButton.enabled = canExchange;
-    } else if ([keyPath isEqualToString:@"valueFrom"] || [keyPath isEqualToString:@"currencyFrom"]) {
+    } else if ([keyPath isEqualToString:@"valueFrom"] || [keyPath isEqualToString:@"currencyFrom"] || [keyPath isEqualToString:@"currencyTo"]) {
         BOOL canExchangeAmount =
+            ![currencyFrom isEqualToString:currencyTo] &&
             [valueFrom compare:NSDecimalNumber.zero] != NSOrderedSame &&
             [_accountManager canExchangeAmount:valueFrom from:currencyFrom];
         
