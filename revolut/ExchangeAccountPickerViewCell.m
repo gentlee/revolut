@@ -12,6 +12,7 @@
 
 static NSNumberFormatter *currencyFormatter;
 static NSNumberFormatter *decimalFormatter;
+static NSRegularExpression *removeLeadingZerosRegex;
 
 @implementation ExchangeAccountPickerViewCell {
     AccountManager *_accountManager;
@@ -32,6 +33,11 @@ static NSNumberFormatter *decimalFormatter;
         decimalFormatter = [[NSNumberFormatter alloc] init];
         decimalFormatter.minimumFractionDigits = 0;
         decimalFormatter.currencySymbol = @"";
+        
+        removeLeadingZerosRegex = [NSRegularExpression
+                                   regularExpressionWithPattern:@"^(0*)(\\d.*)"
+                                   options:NSRegularExpressionCaseInsensitive
+                                   error:nil];
     }
 }
 
@@ -106,7 +112,13 @@ static NSNumberFormatter *decimalFormatter;
         NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:finalString];
         if ([number compare:NSDecimalNumber.notANumber] == NSOrderedSame) {
             number = NSDecimalNumber.zero;
+            finalString = @"0";
         }
+        
+        finalString = [removeLeadingZerosRegex stringByReplacingMatchesInString:finalString
+                                                                        options:0
+                                                                          range:NSMakeRange(0, [finalString length])
+                                                                   withTemplate:@"$2"];
         
         textField.text = finalString;
         

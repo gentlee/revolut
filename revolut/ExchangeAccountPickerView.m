@@ -94,6 +94,7 @@
     
     if (self.window) {
         [_accountManager addObserver:self forKeyPath:@"accounts" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
+        [self scrollToProperAccount];
     } else {
         [_accountManager removeObserver:self forKeyPath:@"accounts"];
     }
@@ -109,9 +110,8 @@
             
             NSLog(@"reload currency picker");
             [self reloadData];
+            [self scrollToProperAccount];
         }
-        
-        [self scrollToProperAccount];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
