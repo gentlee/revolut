@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A63CFF4E85E5FBBB06C09455 /* Pods_revolut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81796524C38B5F3B590F0ABB /* Pods_revolut.framework */; };
+		DA3EEF541F5D3176006EB023 /* ExchangeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3EEF531F5D3176006EB023 /* ExchangeViewModel.m */; };
 		DA661D971F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661D961F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.m */; };
 		DA661D9A1F5A81E300F8BDF8 /* ExchangeAccountPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661D991F5A81E300F8BDF8 /* ExchangeAccountPickerView.m */; };
 		DA661DA01F5A8EA100F8BDF8 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA661D9F1F5A8EA100F8BDF8 /* CurrencyManager.m */; };
@@ -20,7 +21,6 @@
 		DA9BF63D1F58577E00CA284B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9BF63B1F58577E00CA284B /* Main.storyboard */; };
 		DA9BF63F1F58577E00CA284B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA9BF63E1F58577E00CA284B /* Assets.xcassets */; };
 		DA9BF6421F58577E00CA284B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9BF6401F58577E00CA284B /* LaunchScreen.storyboard */; };
-		DAF723AC1F5AC4910089D8E7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF723AB1F5AC4910089D8E7 /* User.m */; };
 		DAF723AF1F5AC4F10089D8E7 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF723AE1F5AC4F10089D8E7 /* Account.m */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +28,7 @@
 		81796524C38B5F3B590F0ABB /* Pods_revolut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_revolut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8720C3E76E45C526C31AEB15 /* Pods-revolut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-revolut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-revolut/Pods-revolut.debug.xcconfig"; sourceTree = "<group>"; };
 		BCA1357F2437A09EE80EDEDF /* Pods-revolut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-revolut.release.xcconfig"; path = "Pods/Target Support Files/Pods-revolut/Pods-revolut.release.xcconfig"; sourceTree = "<group>"; };
+		DA3EEF531F5D3176006EB023 /* ExchangeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeViewModel.m; sourceTree = "<group>"; };
 		DA661D951F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeAccountPickerViewCell.h; sourceTree = "<group>"; };
 		DA661D961F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeAccountPickerViewCell.m; sourceTree = "<group>"; };
 		DA661D981F5A81E300F8BDF8 /* ExchangeAccountPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeAccountPickerView.h; sourceTree = "<group>"; };
@@ -51,8 +52,6 @@
 		DA9BF6411F58577E00CA284B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA9BF6431F58577E00CA284B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAAE5F6F1F5B2F62000662C8 /* ExchangeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExchangeViewModel.h; sourceTree = "<group>"; };
-		DAF723AA1F5AC4910089D8E7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		DAF723AB1F5AC4910089D8E7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DAF723AD1F5AC4F10089D8E7 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		DAF723AE1F5AC4F10089D8E7 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,8 +93,8 @@
 		DA661D8F1F5A753400F8BDF8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DA3EEF521F5D2A6C006EB023 /* Exchange */,
 				DA8468581F5C6B4D00D03A50 /* Controls */,
+				DA3EEF521F5D2A6C006EB023 /* Exchange */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -178,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				DAAE5F6F1F5B2F62000662C8 /* ExchangeViewModel.h */,
+				DA3EEF531F5D3176006EB023 /* ExchangeViewModel.m */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -185,8 +185,6 @@
 		DAF723A91F5AC4850089D8E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DAF723AA1F5AC4910089D8E7 /* User.h */,
-				DAF723AB1F5AC4910089D8E7 /* User.m */,
 				DAF723AD1F5AC4F10089D8E7 /* Account.h */,
 				DAF723AE1F5AC4F10089D8E7 /* Account.m */,
 			);
@@ -325,8 +323,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA9BF63A1F58577E00CA284B /* ExchangeViewController.m in Sources */,
+				DA3EEF541F5D3176006EB023 /* ExchangeViewModel.m in Sources */,
 				DA661DA31F5A8EAE00F8BDF8 /* AccountManager.m in Sources */,
-				DAF723AC1F5AC4910089D8E7 /* User.m in Sources */,
 				DAF723AF1F5AC4F10089D8E7 /* Account.m in Sources */,
 				DA661DA61F5A943D00F8BDF8 /* ApiService.m in Sources */,
 				DA9BF6371F58577E00CA284B /* AppDelegate.m in Sources */,

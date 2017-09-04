@@ -10,10 +10,6 @@
 
 @implementation AppDelegate
     
-@synthesize apiService = _apiService;
-@synthesize currencyManager = _currencyManager;
-@synthesize accountManager = _accountManager;
-    
 + (AppDelegate *)sharedInstance{
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
@@ -24,6 +20,7 @@
         _apiService = [ApiService new];
         _currencyManager = [[CurrencyManager alloc] initWithApiService: _apiService];
         _accountManager = [[AccountManager alloc] initWith:_currencyManager];
+        _exchangeViewModel = [[ExchangeViewModel alloc] initWith:_accountManager and:_currencyManager];
     }
     return self;
 }

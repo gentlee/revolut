@@ -10,6 +10,7 @@
 #import "CurrencyManager.h"
 #import "AccountManager.h"
 #import "ApiService.h"
+#import "ExchangeViewModel.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -18,8 +19,11 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic, readonly) ApiService *apiService;
+
 @property (nonatomic, readonly) CurrencyManager *currencyManager;
 @property (nonatomic, readonly) AccountManager *accountManager;
+
+@property (nonatomic, readonly) ExchangeViewModel *exchangeViewModel;
 
 @end
 

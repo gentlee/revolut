@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "CurrencyManager.h"
-#import "User.h"
 
 @interface AccountManager : NSObject
 

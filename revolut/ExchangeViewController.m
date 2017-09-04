@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ExchangeViewController.h"
 #import "ExchangeAccountPickerView.h"
+#import "ExchangeViewModel.h"
 #import "AppDelegate.h"
 
 @interface ExchangeViewController ()
@@ -18,68 +19,34 @@
 @end
 
 @implementation ExchangeViewController {
-    AccountManager *_accountManager;
-    CurrencyManager *_currencyManager;
-    
     ExchangeAccountPickerView *_fromAccountPicker;
     ExchangeAccountPickerView *_toAccountPicker;
+    ExchangeViewModel *_viewModel;
 }
 
 -(void)awakeFromNib {
     [super awakeFromNib];
-    
-    _accountManager = [AppDelegate sharedInstance].accountManager;
-    _currencyManager = [AppDelegate sharedInstance].currencyManager;
-    
-    currencyFrom = _accountManager.accounts.allKeys[0];
-    currencyTo = _accountManager.accounts.allKeys[1];
-    valueFrom = NSDecimalNumber.zero;
-}
-
-#pragma mark - ExchangeViewModel
-
-@synthesize valueFrom;
-@synthesize currencyTo;
-@synthesize currencyFrom;
-@synthesize canExchange;
-
-- (void)setValueTo:(NSDecimalNumber *)value {
-    valueFrom = [_currencyManager getExchangeRateOfValue:value from:currencyTo to:currencyFrom];
-}
-
-- (NSDecimalNumber *)valueTo {
-    return [_currencyManager getExchangeRateOfValue:valueFrom from:currencyFrom to:currencyTo];;
-}
-
-- (void)exchange {
-    [_accountManager exchangeAmount:valueFrom from:currencyFrom to:currencyTo];
-    valueFrom = NSDecimalNumber.zero;
+    _viewModel = [AppDelegate sharedInstance].exchangeViewModel;
 }
 
 #pragma mark - UIViewController
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    [_exchangeButton setTarget:self];
+    [_exchangeButton setTarget:_viewModel];
     [_exchangeButton setAction:@selector(exchange)];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self addObserver:self forKeyPath:@"valueFrom" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
-    [self addObserver:self forKeyPath:@"currencyFrom" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
-    [self addObserver:self forKeyPath:@"currencyTo" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
-    [self addObserver:self forKeyPath:@"canExchange" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
+    [_viewModel addObserver:self forKeyPath:@"canExchange" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-    [self removeObserver:self forKeyPath:@"valueFrom"];
-    [self removeObserver:self forKeyPath:@"currencyFrom"];
-    [self removeObserver:self forKeyPath:@"currencyTo"];
-    [self removeObserver:self forKeyPath:@"canExchange"];
+    [_viewModel removeObserver:self forKeyPath:@"canExchange"];
 }
 
 #pragma mark - UITableView
@@ -96,7 +63,7 @@
     ExchangeAccountPickerView *accountPicker = [[cell.contentView subviews] objectAtIndex:0];
     accountPicker.backgroundColor = [accountPicker.backgroundColor colorWithAlphaComponent:indexPath.row == 0 ? 0.7 : 1];
     accountPicker.pageControl = pageControl;
-    [accountPicker setViewModel:self andType: indexPath.row == 0 ? kAccountPickerFrom : kAccountPickerTo];
+    [accountPicker setViewModel:_viewModel andType: indexPath.row == 0 ? kAccountPickerFrom : kAccountPickerTo];
     
     return cell;
 }
@@ -106,15 +73,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"canExchange"]) {
-        NSLog(@"update exchangeButton");
-        _exchangeButton.enabled = canExchange;
-    } else if ([keyPath isEqualToString:@"valueFrom"] || [keyPath isEqualToString:@"currencyFrom"] || [keyPath isEqualToString:@"currencyTo"]) {
-        BOOL canExchangeAmount =
-            ![currencyFrom isEqualToString:currencyTo] &&
-            [valueFrom compare:NSDecimalNumber.zero] != NSOrderedSame &&
-            [_accountManager canExchangeAmount:valueFrom from:currencyFrom];
-        
-        [self setValue:[NSNumber numberWithBool:canExchangeAmount] forKey:@"canExchange"];
+        _exchangeButton.enabled = _viewModel.canExchange;
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }

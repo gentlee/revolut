@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -140,7 +141,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="mXi-l8-hBT">
-                        <barButtonItem key="rightBarButtonItem" title="Exchange" id="HaL-4E-2qg"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Push" id="LG4-bq-h7w">
+                                <connections>
+                                    <segue destination="4jA-KB-WVF" kind="show" id="HnC-bu-gfS"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Exchange" id="HaL-4E-2qg"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="exchangeButton" destination="HaL-4E-2qg" id="oYn-FT-lRe"/>
@@ -151,5 +159,8 @@
             <point key="canvasLocation" x="79" y="124"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="rbr-Pz-5ZR"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.1960784314" green="0.63529411759999999" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
 </document>

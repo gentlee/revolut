@@ -6,7 +6,13 @@
 //  Copyright © 2017 Home. All rights reserved.
 //
 
-@protocol ExchangeViewModel
+#import <Foundation/Foundation.h>
+#import "AccountManager.h"
+#import "CurrencyManager.h"
+
+@interface ExchangeViewModel: NSObject
+
+- (instancetype)initWith:(AccountManager *)accountManager and:(CurrencyManager *)currencyManager;
 
 @property (nonatomic) NSDecimalNumber *valueFrom;
 @property (nonatomic) NSDecimalNumber *valueTo; // can't observe

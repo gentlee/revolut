@@ -16,11 +16,12 @@ static NSNumberFormatter *decimalFormatter;
 @implementation ExchangeAccountPickerViewCell {
     AccountManager *_accountManager;
     CurrencyManager *_currencyManager;
+    
+    UILabel *_fieldLeftView;
+    UITapGestureRecognizer *_tapGesture;
 
     NSString *_accountsKeyPath;
     NSString *_ratesKeyPath;
-    UILabel *_fieldLeftView;
-    UITapGestureRecognizer *_tapGesture;
 }
 
 +(void)initialize {
@@ -52,7 +53,7 @@ static NSNumberFormatter *decimalFormatter;
     [self addGestureRecognizer:_tapGesture];
 }
 
--(void)setViewModel:(NSObject<ExchangeViewModel> *)viewModel andType:(AccountPickerType)type andCurrency:(NSString *)currency {
+-(void)setViewModel:(ExchangeViewModel *)viewModel andType:(AccountPickerType)type andCurrency:(NSString *)currency {
     if (_viewModel != viewModel) {
         if (_viewModel) {
             [_viewModel removeObserver:self forKeyPath:@"valueFrom"];
@@ -95,13 +96,6 @@ static NSNumberFormatter *decimalFormatter;
 
 #pragma mark - UITextField
 
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-    [_viewModel setValuesForKeysWithDictionary:@{
-                                                 @"currencyFrom":_currency,
-                                                 @"valueFrom":[NSDecimalNumber decimalNumberWithString:textField.text]
-                                                }];
-}
-
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSCharacterSet *numbersOnly = [NSCharacterSet characterSetWithCharactersInString:@"0123456789,."];
     NSCharacterSet *characterSetFromTextField = [NSCharacterSet characterSetWithCharactersInString:string];
@@ -116,10 +110,11 @@ static NSNumberFormatter *decimalFormatter;
         
         textField.text = finalString;
         
-        [_viewModel setValuesForKeysWithDictionary:@{
-                                                     (_type == kAccountPickerFrom ? @"valueFrom" : @"valueFrom"):number,
-                                                     (_type == kAccountPickerFrom ? @"currencyFrom" : @"currencyTo"):_currency
-                                                     }];
+        if (_type == kAccountPickerFrom) {
+            _viewModel.valueFrom = number;
+        } else {
+            _viewModel.valueTo = number;
+        }
     }
     
     return FALSE;
@@ -139,16 +134,15 @@ static NSNumberFormatter *decimalFormatter;
 
 #pragma mark - NSObject
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
     if ([keyPath isEqualToString:_accountsKeyPath]) {
-        NSLog(@"update accountValueLabel");
         [currencyFormatter setCurrencyCode:_currency];
         Account *account = [_accountManager.accounts valueForKey:_currency];
         _accountValueLabel.text = [NSString localizedStringWithFormat:@"You have %@", [currencyFormatter stringFromNumber:account.amount]];
-    } else if ([keyPath isEqualToString:_ratesKeyPath] || [keyPath isEqualToString:@"valueFrom"] || [keyPath isEqualToString:@"currencyFrom"] || [keyPath isEqualToString:@"currencyTo"]) {
-
-        NSLog(@"update rateLabel");
-        
+    }
+    
+    else if ([keyPath isEqualToString:_ratesKeyPath] || [keyPath isEqualToString:@"valueFrom"] || [keyPath isEqualToString:@"currencyFrom"] || [keyPath isEqualToString:@"currencyTo"]) {
         [currencyFormatter setCurrencyCode:_currency];
         NSDecimalNumber *fromValue = [[NSDecimalNumber alloc] initWithInt:1];
         NSString *fromText = [currencyFormatter stringFromNumber: fromValue];
@@ -159,13 +153,14 @@ static NSNumberFormatter *decimalFormatter;
         NSString *toText = [currencyFormatter stringFromNumber: toValue];
         _rateLabel.text = [NSString stringWithFormat:@"%@ = %@", fromText, toText];
         
-        NSDecimalNumber *currentExchangeValue = [_currencyManager getExchangeRateOfValue:_viewModel.valueFrom from:_viewModel.currencyFrom to:_currency];
+        NSDecimalNumber *currentExchangeValue = _type == kAccountPickerFrom ? _viewModel.valueFrom : _viewModel.valueTo;
         if (!_transferField.isEditing && [[NSDecimalNumber decimalNumberWithString:_transferField.text] compare:currentExchangeValue] != NSOrderedSame) {
-            NSLog(@"update transferField from: %@ to: %@", _transferField.text, currentExchangeValue.stringValue);
             decimalFormatter.currencyCode = _currency;
             _transferField.text = [decimalFormatter stringFromNumber:currentExchangeValue];
         }
-    } else {
+    }
+    
+    else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }

@@ -17,9 +17,9 @@ typedef NS_ENUM(NSUInteger, AccountPickerType) {
 @interface ExchangeAccountPickerView : UICollectionView<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
 @property (nonatomic) UIPageControl *pageControl;
-@property (nonatomic, readonly) NSObject<ExchangeViewModel> *viewModel;
+@property (nonatomic, readonly) ExchangeViewModel *viewModel;
 @property (nonatomic, readonly) AccountPickerType type;
 
--(void)setViewModel:(NSObject<ExchangeViewModel> *)viewModel andType:(AccountPickerType)type;
+-(void)setViewModel:(ExchangeViewModel *)viewModel andType:(AccountPickerType)type;
 
 @end
