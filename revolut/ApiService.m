@@ -32,7 +32,7 @@
                 }
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
-                    NSLog(@"getCurrencyRates Success: %@", result);
+//                    NSLog(@"getCurrencyRates Success: %@", result);
                     callback(result, nil);
                 }];
             }

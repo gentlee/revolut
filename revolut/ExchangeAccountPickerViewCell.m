@@ -32,6 +32,8 @@ static NSRegularExpression *removeLeadingZerosRegex;
         
         decimalFormatter = [[NSNumberFormatter alloc] init];
         decimalFormatter.minimumFractionDigits = 0;
+        decimalFormatter.maximumFractionDigits = 2;
+        decimalFormatter.minimumIntegerDigits = 1;
         decimalFormatter.currencySymbol = @"";
         
         removeLeadingZerosRegex = [NSRegularExpression
@@ -60,44 +62,49 @@ static NSRegularExpression *removeLeadingZerosRegex;
 }
 
 -(void)setViewModel:(ExchangeViewModel *)viewModel andType:(AccountPickerType)type andCurrency:(NSString *)currency {
-    if (_viewModel != viewModel) {
+    [self setSubscribed:FALSE];
+    
+    _viewModel = viewModel;
+    _currency = currency;
+    _type = type;
+    
+    _accountsKeyPath = [NSString stringWithFormat:@"accounts.%@.balance", _currency];
+    _ratesKeyPath = [NSString stringWithFormat:@"rates.%@", _currency];
+    
+    if (self.window) {
+        [self setSubscribed:TRUE];
+    }
+    
+    _currencyLabel.text = _currency;
+    _fieldLeftView.text = _type == kAccountPickerFrom ? @"-" : @"+";
+}
+
+-(void)setSubscribed:(BOOL)subscibed {
+    if (subscibed) {
+        if (_viewModel) {
+            [_viewModel addObserver:self forKeyPath:@"valueFrom" options:NSKeyValueObservingOptionNew context:nil];
+            [_viewModel addObserver:self forKeyPath:@"currencyFrom" options:NSKeyValueObservingOptionNew context:nil];
+            [_viewModel addObserver:self forKeyPath:@"currencyTo" options:NSKeyValueObservingOptionNew context:nil];
+        }
+        
+        if (_currency) {
+            NSLog(@"+= <%lu>: %@", (unsigned long)self.hash, _accountsKeyPath);
+            [_accountManager addObserver:self forKeyPath:_accountsKeyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
+            [_currencyManager addObserver:self forKeyPath:_ratesKeyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
+        }
+    } else {
         if (_viewModel) {
             [_viewModel removeObserver:self forKeyPath:@"valueFrom"];
             [_viewModel removeObserver:self forKeyPath:@"currencyFrom"];
             [_viewModel removeObserver:self forKeyPath:@"currencyTo"];
         }
         
-        _viewModel = viewModel;
-        
-        if (_viewModel) {
-            [_viewModel addObserver:self forKeyPath:@"valueFrom" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
-            [_viewModel addObserver:self forKeyPath:@"currencyFrom" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
-            [_viewModel addObserver:self forKeyPath:@"currencyTo" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
-        }
-    }
-    
-    if (![currency isEqualToString:_currency]) {
         if (_currency) {
+            NSLog(@"-= <%lu>: %@", (unsigned long)self.hash, _accountsKeyPath);
             [_accountManager removeObserver:self forKeyPath:_accountsKeyPath];
             [_currencyManager removeObserver:self forKeyPath:_ratesKeyPath];
         }
-        
-        _currency = currency;
-        
-        if (_currency) {
-            _currencyLabel.text = _currency;
-            
-            _accountsKeyPath = [NSString stringWithFormat:@"%@%@", @"accounts.", _currency];
-            _ratesKeyPath = [NSString stringWithFormat:@"%@%@", @"rates.", _currency];
-            
-            [_accountManager addObserver:self forKeyPath:_accountsKeyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
-            [_currencyManager addObserver:self forKeyPath:_ratesKeyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
-        }
     }
-    
-    _type = type;
-    
-    _fieldLeftView.text = _type == kAccountPickerFrom ? @"-" : @"+";
 }
 
 #pragma mark - UITextField
@@ -139,9 +146,7 @@ static NSRegularExpression *removeLeadingZerosRegex;
 #pragma mark - UIView
 
 -(void)didMoveToWindow {
-    if (!self.window) {
-        [self setViewModel:nil andType:0 andCurrency:nil];
-    }
+    [self setSubscribed:!!self.window];
 }
 
 #pragma mark - NSObject
@@ -151,7 +156,7 @@ static NSRegularExpression *removeLeadingZerosRegex;
     if ([keyPath isEqualToString:_accountsKeyPath]) {
         [currencyFormatter setCurrencyCode:_currency];
         Account *account = [_accountManager.accounts valueForKey:_currency];
-        _accountValueLabel.text = [NSString localizedStringWithFormat:@"You have %@", [currencyFormatter stringFromNumber:account.amount]];
+        _accountValueLabel.text = [NSString localizedStringWithFormat:@"You have %@", [currencyFormatter stringFromNumber:account.balance]];
     }
     
     else if ([keyPath isEqualToString:_ratesKeyPath] || [keyPath isEqualToString:@"valueFrom"] || [keyPath isEqualToString:@"currencyFrom"] || [keyPath isEqualToString:@"currencyTo"]) {
@@ -166,8 +171,7 @@ static NSRegularExpression *removeLeadingZerosRegex;
         _rateLabel.text = [NSString stringWithFormat:@"%@ = %@", fromText, toText];
         
         NSDecimalNumber *currentExchangeValue = _type == kAccountPickerFrom ? _viewModel.valueFrom : _viewModel.valueTo;
-        if (!_transferField.isEditing && [[NSDecimalNumber decimalNumberWithString:_transferField.text] compare:currentExchangeValue] != NSOrderedSame) {
-            decimalFormatter.currencyCode = _currency;
+        if ([[NSDecimalNumber decimalNumberWithString:_transferField.text] compare:currentExchangeValue] != NSOrderedSame) {
             _transferField.text = [decimalFormatter stringFromNumber:currentExchangeValue];
         }
     }

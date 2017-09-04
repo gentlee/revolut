@@ -40,7 +40,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [_viewModel addObserver:self forKeyPath:@"canExchange" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
+    [_viewModel addObserver:self forKeyPath:@"canExchange" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -72,7 +72,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"canExchange"]) {
+    if ([keyPath isEqualToString:@"canExchange"]) { // TODO add and check for observeContext
         _exchangeButton.enabled = _viewModel.canExchange;
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

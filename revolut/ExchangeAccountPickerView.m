@@ -53,7 +53,7 @@
     NSInteger centerPosition = [self numberOfItemsInSection:0] / 2;
     NSInteger centerCurrencyPosition = centerPosition - centerPosition % _currencies.count + accountIndex;
     
-    [self layoutIfNeeded]; // make scrollToItemAtIndexPath always work
+    [self layoutIfNeeded]; // HACK layoutIfNeeded makes scrollToItemAtIndexPath always work
     [self scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:centerCurrencyPosition inSection:0]
                  atScrollPosition:UICollectionViewScrollPositionLeft
                          animated:false];
@@ -93,7 +93,7 @@
     [super didMoveToWindow];
     
     if (self.window) {
-        [_accountManager addObserver:self forKeyPath:@"accounts" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
+        [_accountManager addObserver:self forKeyPath:@"accounts" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
         [self scrollToProperAccount];
     } else {
         [_accountManager removeObserver:self forKeyPath:@"accounts"];

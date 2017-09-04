@@ -21,9 +21,9 @@
         _currencyManager = currencyManager;
         
         accounts = @{
-                     @"EUR": [[Account alloc] initWithCurrency:@"EUR" andAmount:[[NSDecimalNumber alloc] initWithInt: 100]],
-                     @"GBP": [[Account alloc] initWithCurrency:@"GBP" andAmount:[[NSDecimalNumber alloc] initWithInt: 100]],
-                     @"USD": [[Account alloc] initWithCurrency:@"USD" andAmount:[[NSDecimalNumber alloc] initWithInt: 100]]
+                     @"EUR": [[Account alloc] initWithCurrency:@"EUR" andBalance:[[NSDecimalNumber alloc] initWithInt: 100]],
+                     @"GBP": [[Account alloc] initWithCurrency:@"GBP" andBalance:[[NSDecimalNumber alloc] initWithInt: 100]],
+                     @"USD": [[Account alloc] initWithCurrency:@"USD" andBalance:[[NSDecimalNumber alloc] initWithInt: 100]]
                      };
     }
     return self;
@@ -31,8 +31,8 @@
 
 -(BOOL)canExchangeAmount:(NSDecimalNumber *)amount from:(NSString *)fromCurrency {
     Account *fromAccount = accounts[fromCurrency];
-    BOOL result = [fromAccount.amount compare:amount] != NSOrderedAscending;
-    NSLog(@"canExchange: %@ from: %@ accountAmount: %@ result: %@", amount, fromCurrency, fromAccount.amount, [NSNumber numberWithBool:result]);
+    BOOL result = [fromAccount.balance compare:amount] != NSOrderedAscending;
+    NSLog(@"canExchange: %@ from: %@ accountAmount: %@ result: %@", amount, fromCurrency, fromAccount.balance, [NSNumber numberWithBool:result]);
     return result;
 }
 
@@ -49,12 +49,14 @@
         return FALSE;
     }
     
-    [fromAccount setValue:[fromAccount.amount decimalNumberBySubtracting:amount] forKey:@"amount"];
+    [self setValue:[fromAccount.balance decimalNumberBySubtracting:amount]
+        forKeyPath:[NSString stringWithFormat:@"accounts.%@.balance", fromCurrency]];
     
     NSDecimalNumber *amountToAdd = [_currencyManager getExchangeRateOfValue:amount from:fromCurrency to:toCurrency];
-    [toAccount setValue: [toAccount.amount decimalNumberByAdding: amountToAdd] forKey:@"amount"];
+    [self setValue:[toAccount.balance decimalNumberByAdding: amountToAdd]
+        forKeyPath:[NSString stringWithFormat:@"accounts.%@.balance", toCurrency]];
     
-    NSLog(@"exchangeAmount Success, newFromAmount: %@ newToAmount: %@", fromAccount.amount, toAccount.amount);
+    NSLog(@"exchangeAmount Success, newFromAmount: %@ newToAmount: %@", fromAccount.balance, toAccount.balance);
     
     return TRUE;
 }

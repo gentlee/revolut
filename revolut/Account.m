@@ -11,13 +11,13 @@
 @implementation Account
     
 @synthesize currency = _currency;
-@synthesize amount = _amount;
+@synthesize balance = _balance;
     
--(instancetype) initWithCurrency: (NSString *)currency andAmount:(NSDecimalNumber *)amount {
+-(instancetype) initWithCurrency: (NSString *)currency andBalance:(NSDecimalNumber *)balance {
     self = [super init];
     if (self) {
         _currency = currency;
-        _amount = amount;
+        _balance = balance;
     }
     return self;
 }

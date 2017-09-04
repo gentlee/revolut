@@ -11,8 +11,8 @@
 @interface Account : NSObject
     
 @property (nonatomic) NSString *currency;
-@property (nonatomic) NSDecimalNumber *amount;
+@property (nonatomic) NSDecimalNumber *balance;
     
--(instancetype) initWithCurrency: (NSString *)currency andAmount:(NSDecimalNumber *)amount;
+-(instancetype) initWithCurrency: (NSString *)currency andBalance:(NSDecimalNumber *)balance;
 
 @end
