@@ -20,6 +20,7 @@ static NSNumberFormatter *decimalFormatter;
     NSString *_accountsKeyPath;
     NSString *_ratesKeyPath;
     UILabel *_fieldLeftView;
+    UITapGestureRecognizer *_tapGesture;
 }
 
 +(void)initialize {
@@ -39,13 +40,16 @@ static NSNumberFormatter *decimalFormatter;
     _accountManager = [AppDelegate sharedInstance].accountManager;
     _currencyManager = [AppDelegate sharedInstance].currencyManager;
     
-    _transferField.delegate = self;
-    
     _fieldLeftView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 25, _transferField.frame.size.height)];
     _fieldLeftView.textColor = _transferField.textColor;
     _fieldLeftView.font = _transferField.font;
+    
     _transferField.leftView = _fieldLeftView;
     _transferField.leftViewMode = UITextFieldViewModeAlways;
+    _transferField.delegate = self;
+    
+    _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:_transferField action:@selector(becomeFirstResponder)];
+    [self addGestureRecognizer:_tapGesture];
 }
 
 -(void)setViewModel:(NSObject<ExchangeViewModel> *)viewModel andType:(AccountPickerType)type andCurrency:(NSString *)currency {
