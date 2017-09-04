@@ -10,10 +10,6 @@
 #import "AppDelegate.h"
 #import "Account.h"
 
-static NSNumberFormatter *currencyFormatter;
-static NSNumberFormatter *decimalFormatter;
-static NSRegularExpression *removeLeadingZerosRegex;
-
 @implementation ExchangeAccountPickerViewCell {
     AccountManager *_accountManager;
     CurrencyManager *_currencyManager;
@@ -24,6 +20,10 @@ static NSRegularExpression *removeLeadingZerosRegex;
     NSString *_accountsKeyPath;
     NSString *_ratesKeyPath;
 }
+
+static NSNumberFormatter *currencyFormatter;
+static NSNumberFormatter *decimalFormatter;
+static NSRegularExpression *removeLeadingZerosRegex;
 
 +(void)initialize {
     if (!currencyFormatter) {
@@ -88,7 +88,6 @@ static NSRegularExpression *removeLeadingZerosRegex;
         }
         
         if (_currency) {
-            NSLog(@"+= <%lu>: %@", (unsigned long)self.hash, _accountsKeyPath);
             [_accountManager addObserver:self forKeyPath:_accountsKeyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
             [_currencyManager addObserver:self forKeyPath:_ratesKeyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
         }
@@ -100,7 +99,6 @@ static NSRegularExpression *removeLeadingZerosRegex;
         }
         
         if (_currency) {
-            NSLog(@"-= <%lu>: %@", (unsigned long)self.hash, _accountsKeyPath);
             [_accountManager removeObserver:self forKeyPath:_accountsKeyPath];
             [_currencyManager removeObserver:self forKeyPath:_ratesKeyPath];
         }
@@ -146,6 +144,8 @@ static NSRegularExpression *removeLeadingZerosRegex;
 #pragma mark - UIView
 
 -(void)didMoveToWindow {
+    [super didMoveToWindow];
+    
     [self setSubscribed:!!self.window];
 }
 

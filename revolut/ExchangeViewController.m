@@ -19,8 +19,6 @@
 @end
 
 @implementation ExchangeViewController {
-    ExchangeAccountPickerView *_fromAccountPicker;
-    ExchangeAccountPickerView *_toAccountPicker;
     ExchangeViewModel *_viewModel;
 }
 
@@ -72,7 +70,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"canExchange"]) { // TODO add and check for observeContext
+    if ([keyPath isEqualToString:@"canExchange"]) { // TODO add and check observeContext
         _exchangeButton.enabled = _viewModel.canExchange;
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

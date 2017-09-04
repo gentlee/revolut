@@ -108,7 +108,6 @@
         if (currencies != _currencies && ![currencies isEqualToArray:_currencies]) {
             _currencies = currencies;
             
-            NSLog(@"reload currency picker");
             [self reloadData];
             [self scrollToProperAccount];
         }
