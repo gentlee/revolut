@@ -16,7 +16,7 @@
 		DA84685B1F5C6B6D00D03A50 /* FixedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DA84685A1F5C6B6D00D03A50 /* FixedTextField.m */; };
 		DA9BF6341F58577E00CA284B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BF6331F58577E00CA284B /* main.m */; };
 		DA9BF6371F58577E00CA284B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BF6361F58577E00CA284B /* AppDelegate.m */; };
-		DA9BF63A1F58577E00CA284B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BF6391F58577E00CA284B /* MainViewController.m */; };
+		DA9BF63A1F58577E00CA284B /* ExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BF6391F58577E00CA284B /* ExchangeViewController.m */; };
 		DA9BF63D1F58577E00CA284B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9BF63B1F58577E00CA284B /* Main.storyboard */; };
 		DA9BF63F1F58577E00CA284B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA9BF63E1F58577E00CA284B /* Assets.xcassets */; };
 		DA9BF6421F58577E00CA284B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9BF6401F58577E00CA284B /* LaunchScreen.storyboard */; };
@@ -44,8 +44,8 @@
 		DA9BF6331F58577E00CA284B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA9BF6351F58577E00CA284B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DA9BF6361F58577E00CA284B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DA9BF6381F58577E00CA284B /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		DA9BF6391F58577E00CA284B /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		DA9BF6381F58577E00CA284B /* ExchangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExchangeViewController.h; sourceTree = "<group>"; };
+		DA9BF6391F58577E00CA284B /* ExchangeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExchangeViewController.m; sourceTree = "<group>"; };
 		DA9BF63C1F58577E00CA284B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DA9BF63E1F58577E00CA284B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA9BF6411F58577E00CA284B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,16 +78,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		DA661D8F1F5A753400F8BDF8 /* Views */ = {
+		DA3EEF521F5D2A6C006EB023 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
-				DA8468581F5C6B4D00D03A50 /* Controls */,
-				DA9BF6381F58577E00CA284B /* MainViewController.h */,
-				DA9BF6391F58577E00CA284B /* MainViewController.m */,
+				DA9BF6381F58577E00CA284B /* ExchangeViewController.h */,
+				DA9BF6391F58577E00CA284B /* ExchangeViewController.m */,
 				DA661D951F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.h */,
 				DA661D961F5A770000F8BDF8 /* ExchangeAccountPickerViewCell.m */,
 				DA661D981F5A81E300F8BDF8 /* ExchangeAccountPickerView.h */,
 				DA661D991F5A81E300F8BDF8 /* ExchangeAccountPickerView.m */,
+			);
+			name = Exchange;
+			sourceTree = "<group>";
+		};
+		DA661D8F1F5A753400F8BDF8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA3EEF521F5D2A6C006EB023 /* Exchange */,
+				DA8468581F5C6B4D00D03A50 /* Controls */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -316,7 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA9BF63A1F58577E00CA284B /* MainViewController.m in Sources */,
+				DA9BF63A1F58577E00CA284B /* ExchangeViewController.m in Sources */,
 				DA661DA31F5A8EAE00F8BDF8 /* AccountManager.m in Sources */,
 				DAF723AC1F5AC4910089D8E7 /* User.m in Sources */,
 				DAF723AF1F5AC4F10089D8E7 /* Account.m in Sources */,

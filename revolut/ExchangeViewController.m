@@ -1,5 +1,5 @@
 //
-//  MainViewController.m
+//  ExchangeViewController.m
 //  revolut
 //
 //  Created by Alexander Danilov on 31/08/2017.
@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MainViewController.h"
+#import "ExchangeViewController.h"
 #import "ExchangeAccountPickerView.h"
 #import "AppDelegate.h"
 
-@interface MainViewController ()
+@interface ExchangeViewController ()
     
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *exchangeButton;
     
 @end
 
-@implementation MainViewController {
+@implementation ExchangeViewController {
     AccountManager *_accountManager;
     CurrencyManager *_currencyManager;
     
@@ -89,7 +89,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CurrencyTableCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExchangeTableCell" forIndexPath:indexPath];
     
     UIPageControl *pageControl = [[cell.contentView subviews] objectAtIndex:1];
     

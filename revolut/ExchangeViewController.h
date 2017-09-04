@@ -1,5 +1,5 @@
 //
-//  MainViewController.h
+//  ExchangeViewController.h
 //  revolut
 //
 //  Created by Alexander Danilov on 31/08/2017.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ExchangeViewModel.h"
 
-@interface MainViewController : UITableViewController<ExchangeViewModel>
+@interface ExchangeViewController : UITableViewController<ExchangeViewModel>
 @end
 
