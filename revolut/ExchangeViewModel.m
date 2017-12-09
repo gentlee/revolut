@@ -37,9 +37,12 @@
     return self;
 }
 
-- (void)exchange {
-    [_accountManager exchangeAmount:valueFrom from:currencyFrom to:currencyTo];
-    [self setValue:NSDecimalNumber.zero forKey:@"valueFrom"];
+- (BOOL)exchange:(NSError **)errorPtr {
+    if ([_accountManager exchangeAmount:valueFrom from:currencyFrom to:currencyTo error:errorPtr]) {
+        [self setValue:NSDecimalNumber.zero forKey:@"valueFrom"];
+        return TRUE;
+    }
+    return FALSE;
 }
 
 - (void)setValueTo:(NSDecimalNumber *)value {

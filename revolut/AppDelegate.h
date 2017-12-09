@@ -25,5 +25,7 @@
 
 @property (nonatomic, readonly) ExchangeViewModel *exchangeViewModel;
 
+-(void)onError:(NSError *)error;
+
 @end
 

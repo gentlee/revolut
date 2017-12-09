@@ -17,6 +17,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        // TODO use container
         _apiService = [ApiService new];
         _currencyManager = [[CurrencyManager alloc] initWithApiService: _apiService];
         _accountManager = [[AccountManager alloc] initWith:_currencyManager];
@@ -26,21 +27,16 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    // handle errors
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"Error" object:nil queue:nil usingBlock:^(NSNotification *notificaion){
-        NSString *errorMessage = [notificaion.userInfo valueForKey:@"error"];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction: [UIAlertAction actionWithTitle:@"Dismiss" style:0 handler:nil]];
-        [[self.window rootViewController] presentViewController:alert animated:true completion:nil];
-    }];
-    
-    // start updating currency rates
-    
+    [_currencyManager subscribeOnError:^(NSError *error) { [self onError:error]; }];
     [_currencyManager startUpdatingRates];
     
     return YES;
+}
+
+-(void)onError:(NSError *)error {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction: [UIAlertAction actionWithTitle:@"Dismiss" style:0 handler:nil]];
+    [[self.window rootViewController] presentViewController:alert animated:true completion:nil];
 }
 
 @end

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b5k-Jq-sBe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b5k-Jq-sBe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,7 +16,7 @@
             <objects>
                 <navigationController id="b5k-Jq-sBe" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zi4-ZA-8k5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -35,6 +35,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="4ZC-Rr-r6h" userLabel="Footer">
+                            <rect key="frame" x="0.0" y="172" width="375" height="150"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWG-hc-fAU">
+                                    <rect key="frame" x="24" y="24" width="327" height="76"/>
+                                    <attributedString key="attributedText">
+                                        <fragment>
+                                            <string key="content">MVVM + KVO. Storyboard only. Reuse similar views.
+</string>
+                                            <attributes>
+                                                <color key="NSColor" red="0.47396484375000003" green="0.47396484375000003" blue="0.47396484375000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="13" name=".SFNSText"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Rates are random and updated every 30 seconds.">
+                                            <attributes>
+                                                <color key="NSColor" red="0.47396484375000003" green="0.47396484375000003" blue="0.47396484375000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="13" name=".SFNSText"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="iWG-hc-fAU" firstAttribute="top" secondItem="4ZC-Rr-r6h" secondAttribute="topMargin" id="3hx-Ry-E4z"/>
+                                <constraint firstItem="iWG-hc-fAU" firstAttribute="leading" secondItem="4ZC-Rr-r6h" secondAttribute="leadingMargin" id="P2N-hL-a9e"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="iWG-hc-fAU" secondAttribute="trailing" id="jnM-My-4Oj"/>
+                            </constraints>
+                            <edgeInsets key="layoutMargins" top="24" left="24" bottom="24" right="24"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExchangeTableCell" id="1Mn-vN-Nk7">
                                 <rect key="frame" x="0.0" y="28" width="375" height="144"/>
@@ -64,7 +99,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="GBP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfe-0i-Pmf">
-                                                                        <rect key="frame" x="24" y="24" width="78" height="48"/>
+                                                                        <rect key="frame" x="24" y="24" width="77" height="48"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -121,7 +156,7 @@
                                             </cells>
                                         </collectionView>
                                         <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="6bU-eW-Hx7">
-                                            <rect key="frame" x="168" y="99" width="39" height="37"/>
+                                            <rect key="frame" x="168" y="96" width="39" height="37"/>
                                         </pageControl>
                                     </subviews>
                                     <constraints>
@@ -156,11 +191,8 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ES5-TA-lEq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79" y="124"/>
+            <point key="canvasLocation" x="77.599999999999994" y="123.68815592203899"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="rbr-Pz-5ZR"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.1960784314" green="0.63529411759999999" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
 </document>

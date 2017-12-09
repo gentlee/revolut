@@ -16,6 +16,6 @@
 -(instancetype)initWith:(CurrencyManager *)currencyManager;
 
 -(BOOL)canExchangeAmount:(NSDecimalNumber *)amount from:(NSString *)fromCurrency;
--(BOOL)exchangeAmount:(NSDecimalNumber *)amount from:(NSString *)fromCurrency to:(NSString *)toCurrency;
+-(BOOL)exchangeAmount:(NSDecimalNumber *)amount from:(NSString *)fromCurrency to:(NSString *)toCurrency error:(NSError **)errorPtr;
 
 @end

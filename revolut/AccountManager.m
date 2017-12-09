@@ -36,7 +36,7 @@
     return result;
 }
 
--(BOOL)exchangeAmount:(NSDecimalNumber *)amount from:(NSString *)fromCurrency to:(NSString *)toCurrency {
+-(BOOL)exchangeAmount:(NSDecimalNumber *)amount from:(NSString *)fromCurrency to:(NSString *)toCurrency error:(NSError **)errorPtr {
     NSLog(@"exchangeAmount: %@ from: %@ to: %@", amount, fromCurrency, toCurrency);
     
     Account *fromAccount = accounts[fromCurrency];
@@ -45,7 +45,9 @@
     BOOL noAccounts = !fromAccount || !toAccount;
     if (noAccounts || ![self canExchangeAmount:amount from:fromCurrency]) {
         NSString *errorMessage = noAccounts ? @"Unknown error" : @"You don't have enough money";
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Error" object:self userInfo:@{@"error": errorMessage}];
+        if (errorPtr) {
+            *errorPtr = [NSError errorWithDomain:@"revolut" code:0 userInfo:@{ NSLocalizedDescriptionKey: errorMessage }];
+        }
         return FALSE;
     }
     

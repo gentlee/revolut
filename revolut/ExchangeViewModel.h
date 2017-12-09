@@ -20,6 +20,6 @@
 @property (nonatomic) NSString *currencyTo;
 @property (nonatomic, readonly) BOOL canExchange;
 
--(void)exchange;
+-(BOOL)exchange:(NSError **)errorPtr;
 
 @end

@@ -27,11 +27,18 @@
     _viewModel = [AppDelegate sharedInstance].exchangeViewModel;
 }
 
+-(void)exchange {
+    NSError *error;
+    if (![_viewModel exchange:&error]) {
+        [[AppDelegate sharedInstance] onError:error];
+    }
+}
+
 #pragma mark - UIViewController
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    [_exchangeButton setTarget:_viewModel];
+    [_exchangeButton setTarget:self];
     [_exchangeButton setAction:@selector(exchange)];
 }
 
